@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Film } from "../types/types";
 
-export const useFilms = (limit: number = 20) => {
+export const useFilms = (limit: number = 10) => {
     const [films, setFilms] = useState<Film[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
