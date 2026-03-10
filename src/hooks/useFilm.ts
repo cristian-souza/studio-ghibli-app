@@ -1,20 +1,35 @@
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import type { Film } from "../types/types";
 
-const fetchFilms = async (limit: number = 10): Promise<Film[]> => {
-    const response = await fetch(`https://ghibliapi.vercel.app/films?limit=${limit}`);
+export const useFilms = (limit: number = 10) => {
+    const [films, setFilms] = useState<Film[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
 
-    if (!response.ok) throw new Error("Erro ao carregar filmes");
+    useEffect(() => {
+        let isMounted = true;
+        const fetchFilms = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch(
+                    `https://ghibliapi.vercel.app/films?limit=${limit}`,
+                );
+                const data = await response.json();
+                if (isMounted) {
+                    setFilms(data);
+                    setError(null);
+                }
+            } catch (err) {
+                if (isMounted) setError(err as Error);
+            } finally {
+                if (isMounted) setIsLoading(false);
+            }
+        };
+        fetchFilms();
+        return () => {
+            isMounted = false;
+        };
+    }, [limit]);
 
-    return response.json();
+    return { data: films, isLoading, error };
 };
-
-export function useFilms(limit: number) {
-    return useQuery<Film[]>({
-        queryKey: ['films', limit],
-        queryFn: async () => fetchFilms(limit),
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: false,
-        staleTime: 1000 * 60 * 5, 
-    })
-}
