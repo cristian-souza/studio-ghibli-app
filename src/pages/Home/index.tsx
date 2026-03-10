@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useFilms } from '../../hooks/useFilm'
 
 export const Home = () => {
@@ -11,9 +12,9 @@ export const Home = () => {
             {data?.map((film) => (
                 <li key={film.id}>
                     <h2>{film.title}</h2>
-                    <a href="">
+                    <Link to={`/film/${film.id}`}>
                         <img src={film.movie_banner} alt={film.title} />
-                    </a>
+                    </Link>
                 </li>
             ))}
         </ul>
