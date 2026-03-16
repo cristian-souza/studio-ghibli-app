@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# Studio Ghibli App 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação web que lista os filmes do Studio Ghibli, permitindo visualizar detalhes de cada obra. É um projeto desenvolvido com **React** e **TypeScript**, utilizando a [Studio Ghibli API](https://ghibliapi.vercel.app/).
 
-Currently, two official plugins are available:
+## ✨ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Listagem de Filmes**: Exibe uma lista de filmes do Studio Ghibli.
+- **Detalhes do Filme**: Página dedicada para cada filme com informações detalhadas (sinopse, diretor, ano de lançamento, etc.).
+- **Navegação**: Sistema de rotas dinâmicas para transitar entre a home e os detalhes.
+- **Consumo de API**: Busca de dados em tempo real da API oficial do Studio Ghibli.
 
-## React Compiler
+## 🚀 Tecnologias Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19**: Biblioteca para construção da interface.
+- **TypeScript**: Adiciona tipagem estática ao JavaScript, ajudando a evitar erros.
+- **Vite**: Ferramenta de build rápida para o desenvolvimento moderno.
+- **Tailwind CSS 4**: Framework de CSS para estilização rápida e moderna.
+- **React Router 7**: Gerenciamento de rotas e navegação.
+- **TanStack React Query 5**: Gerenciamento e cache de dados assíncronos (API).
 
-## Expanding the ESLint configuration
+## 🛠️ Como Executar o Projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Clone o repositório:**
+   ```bash
+   git clone <url-do-repositorio>
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Entre na pasta do projeto:**
+   ```bash
+   cd studio-ghibli-app
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+5. **Acesse no navegador:**
+   Abra o endereço que aparecer no terminal (geralmente `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📁 Estrutura de Pastas
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `src/components`: Componentes reutilizáveis como Header e Layout.
+- `src/hooks`: Hooks personalizados para busca de dados (ex: `useFilms`).
+- `src/pages`: Páginas da aplicação (Home e Detalhes).
+- `src/routes`: Configuração de rotas da aplicação.
+- `src/types`: Definições de tipos TypeScript para os dados da API.
+- `src/styles`: Arquivos de estilização global.
+
+---
+Desenvolvido como projeto de estudo de React e consumo de APIs do curso DevQuest.
